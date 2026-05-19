@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CF Problem Sheet</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADhAOEDASIAAhEBAxEB/8QAHQABAAMBAAMBAQAAAAAAAAAAAAcICQYCAwQBBf/EAE0QAAEDAgIEBgoQBQMFAQAAAAABAgMEBgURBwh0shIhNTd1sxMYIjE2QVFWkbQJFBYXOFJhcXKBk5SV0dLTMlNVoeEVV5IzQoKiscP/xAAcAQEAAgMBAQEAAAAAAAAAAAAABQcDBAYCCAH/xAA5EQABAgMEBgcHAwUAAAAAAAAAAQMCBAURNHGxBjEyNXLBBxYhgZGh0RIVM1JTssITQmEUF0FR4f/aAAwDAQACEQMRAD8AuWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQnpQ1ndFti1s2Gf6hUY/iULlZLT4UxsjYnJ30dI5UZmipkqIqqi99ACbAU/m148LSRyRaOqx7M+5c7FWtVfnTsS5ek8e3kw//AG3qvxdv7QBcIFPe3kw//beq/F2/tH63Xjw7hJwtHFUiZ8apizV//IAuCCv+jzW10WXRVx0OKS11sVUio1rsSY32uqr4uysVUanyvRqE/QyRzRMlikbJG9qOY9q5o5F40VF8aAHkAAAAAAAAAAAAAAAAAAAAAAAAAAAeFRKyCCSaRcmRtVzl8iImagFPNenTliGH10mi+0a59K9IkXG6uF+T8nJm2ma5O8nBVFeqd9HI34yLS0/p3XjVVcdz4pcFcudViVZLVy8eeTpHq5U/ue6y8CluS5aTB4ZEi7O5eHIqZ8BiIquX0Iv15HttuJyNIIUtVexDw45C3AscS2Inap/GBZCn0T2TFAyN+HzzuamSySVL0c75V4KonoQ9nvV2P/SH/epf1HRpopOqmuHxX0OcXSuSRdUXgnqVrBZT3q7H/pD/AL1L+o/HaKrHc1UTCpWqqd9tVJmnpcfvVSd+aHxX0HWuS+WLwT1K2Fn9SfTliFs3PRaPLlrnz29iUqQ0D5n5+0Khy9y1FXvRvXiVveRyo5Mu6zgjSZavuRuNaCOZ81LLGk1PI9O6VqqqZOy4s0VF73yLxZ5HMMc5j0exytc1c0VFyVFOdfZjYcVuNLFQ6Fl6B9tHIFtRTZcHNaK8cmubRnbNw1GXtjEsJpqmbLxSPiarv/ZVOlMRlAAAAAAAAAAAAAAAAAAAAAAAAAAAB8eO8iV+zSbqn2Hx47yJX7NJuqAY5ne6Becam2ebcU4I73QLzjU2zzbikhSr61xJmaFVuTvCuRY0AFtFSAAAEF6yXhDhWxrvqRSStrJeEOFbGu+pFJVdd3g7jyQtShbvaw5qas6uPMLY3QdL1aHfnAauPMLY3QdL1aHfkSSwAAAAAAAAAAAAAAB66qeClppamqmjgghYr5JZHI1rGomauVV4kRE8ZV7SvrkWtgNbNhljYQ+5J4nKx1bLIsNKip42cSukTP6KL30VUI+19tMFZiVxS6LsCqnRYXQcB2Lvjdl7Zn4nJEvlYxOCqp43d/8AgQqaAWVm10dKrpXOjwi042Kvct9pzrknkz7Nxnj25+lj+l2n9ym/eK2AAsn25+lj+l2n9ym/eHbn6WP6Xaf3Kb94rYACzmGa6mkuGra/EMAterp/++OOCaJy/M7srsvQpYHQlrR2LpDroMExOKS2McmVrIYKuVroKh7lyRkcvFm7PLuXI1VVUROEpnEADZg+PHeRK/ZpN1SvGozphq76taps646x1Tj2BxNfDUSuzkq6RV4KOd43OjVWtVy99HMVc1VVLD47yJX7NJuqAY5ne6Becam2ebcU4I73QLzjU2zzbikhSr61xJmaFVuTvCuRY0AFtFSAAAEF6yXhDhWxrvqRSStrJeEOFbGu+pFJVdd3g7jyQtShbvaw5qas6uPMLY3QdL1aHfnAauPMLY3QdL1aHfkSSwAAAAAAAAAAAAAABj3d2Ly4/deL47P/ANXEa6arf88j1ev/ANP6uie2Yrx0h4PblRO6CCrmXsz2/wAXY2Nc9yJ5FVrVRF8SqcsSVqw8+VufSqPV5TRqbsbMk87AtiwwRKmKIqoZpaBI3oIV1KqZlvMM0b2Bh1FHSU9mYCscbUajpqGOV6onxnvRXOX5VVT6fcJY/mXbf4VB+k6EHzpFUJuJbVditxX1O+SXaT9qeBz3uEsfzLtv8Kg/SPcJY/mXbf4VB+k6EHn+umfqReKj9Br5U8Dgr00RWJcuB1GHstzC8MqXsXsFXRUjIZIn5cS9wicJM++1c8yiNXA+mqpaaXLskT3MdkuaZouSmlicSopm7cPL+I7VLvqWf0dz0w+j7TsaxInsqlq22W225HO15mCD2IoUstt5EuakWK1GGayFuxRPyir2VNLOnxmLA9yJ/wA2MX6jSHHeRK/ZpN1TM3U9+ElZ20zerymmWO8iV+zSbqlrHMmOZ3ugXnGptnm3FOCO90C841Ns824pIUq+tcSZmhVbk7wrkWNABbRUgAABBesl4Q4Vsa76kUkrayXhDhWxrvqRSVXXd4O48kLUoW72sOamrOrjzC2N0HS9Wh35wGrjzC2N0HS9Wh35EksAc9fl7WpYmDLi9245SYTSZqjFmd3cqomatYxM3Pdl4moqkD41ro6M6Srkgw/BblxJjFySdsEUTH/K3hScLL52oAWZBVbt27F80Lj9MP6x27di+aFx+mH9YBakFVu3bsXzQuP0w/rPJmu1YauTh2lcqN8ap2BV3wC04Ie0Zayeim+6qKgpcalwbEZncGOjxeNIHPXPJEa9FdGqrxZIjs1z7xMIAAABjOSVqw8+VufSqPV5SNSStWHnytz6VR6vKRtZ3dMcEf2qbEneG8UzLzAA+bCwgAAAhm9cPL+I7VLvqaQoZvXDy/iO1S76ln9Gu3MYQ/kc3pDst9/IkvU9+ElZ20zerymmWO8iV+zSbqmZup78JKztpm9XlNMsd5Er9mk3VLWOZMczvdAvONTbPNuKcEd7oF5xqbZ5txSQpV9a4kzNCq3J3hXIsaAC2ipAAACC9ZLwhwrY131IpJW1kvCHCtjXfUikquu7wdx5IWpQt3tYc1NWdXHmFsboOl6tD3actI+GaLNHlbdOIMSeZqpDQ0vC4K1NQ5F4LM/EnErlXxNaq8a8R6dXHmFsboOl6tCqvskVxz1N+25arZHJS0OHOrXNR3crJNI5nGnjVGxJl5OEvlUiSWK46Q70uO/roqbjufEZK2unXJM+JkLM+KONveaxM+JE+VVzVVVeeBL9h6K6CswSnxLHZqh0lSxJI4InIxGMVM0zXLNVy4/Fl8pgmJhtiH2oySplKmam6rcunanatvYiEQAsF709ofyq77x/ge9PaH8qu+8f4NP3tL/yT/Uep/7h8V9CvoLBe9PaH8qu+8f4PCbRJaT43NZ/qETl7z2zoqp6UyHvaX/nwPxdB6mift8f+EAFxNSLT3iT8ZptGV54g+rgqE4GCVs7s5InonFTucv8TVRO4VeNF7njRWo2q1727UWxcE2FzSdlaiI+GXLLsjF7y5eLjRU+dD+Zh1ZVYdiFNiFDO+nq6WVs0ErFydG9qorXJ8qKiKSMESRwpFDqU5R9hxhyJpxLIkWxUNkAVc7bXAviwg9GK0oUSVqw8+VufSqPV5SNSStWHnytz6VR6vKRtZ3dMcEf2qbEneG8UzLzAA+bCwgAAAhm9cPL+I7VLvqaQoZvXDy/iO1S76ln9Gu3MYQ/kc3pDst9/IkvU9+ElZ20zerymmWO8iV+zSbqmZup78JKztpm9XlNMsd5Er9mk3VLWOZMczvdAvONTbPNuKcEd7oF5xqbZ5txSQpV9a4kzNCq3J3hXIsaAC2ipAAACC9ZLwhwrY131IpJW1kvCHCtjXfUikquu7wdx5IWpQt3tYc1NWdXHmFsboOl6tCmfshnP1T9B0/WSlzNXHmFsboOl6tCmfshnP1T9B0/WSkSSxXItfb/ACBh2yRbiFUC19v8gYdskW4hCVrZg7ywuj/4z+CZqfcACALOAAAII1gvDSl6PZ1khHJI2sF4aUvR7OskI5OwkrvBgUTpFvR/iUAA2iFBJWrDz5W59Ko9XlI1JK1YefK3PpVHq8pG1nd0xwR/apsSd4bxTMvMAD5sLCAAACGb1w8v4jtUu+ppChm9cPL+I7VLvqWf0a7cxhD+RzekOy338iS9T34SVnbTN6vKaZY7yJX7NJuqZm6nvwkrO2mb1eU0yx3kSv2aTdUtY5kxzO90C841Ns824pwR3ugXnGptnm3FJClX1riTM0KrcneFcixoALaKkAAAIL1kvCHCtjXfUiklbWS8IcK2Nd9SKSq67vB3HkhalC3e1hzU1Z1ceYWxug6Xq0KZ+yGc/VP0HT9ZKXM1ceYWxug6Xq0KZ+yGc/VP0HT9ZKRJLFci19v8gYdskW4hVAtfb/IGHbJFuIQla2YO8sLo/wDjP4Jmp9wAIAs4AAAgjWC8NKXo9nWSEckjawXhpS9Hs6yQjk7CSu8GBROkW9H+JQADaIUElasPPlbn0qj1eUjUkrVh58rc+lUerykbWd3THBH9qmxJ3hvFMy8wAPmwsIAAAIZvXDy/iO1S76mkKGb1w8v4jtUu+pZ/RrtzGEP5HN6Q7LffyJL1PfhJWdtM3q8ppljvIlfs0m6pmbqe/CSs7aZvV5TTLHeRK/ZpN1S1jmTHM73QLzjU2zzbinBHe6Becam2ebcUkKVfWuJMzQqtyd4VyLGgAtoqQAAAgvWS8IcK2Nd9SKSVtZLwhwrY131IpKrru8HceSFqULd7WHNTVnVx5hbG6DperQpn7IZz9U/QdP1kpczVx5hbG6DperQpn7IZz9U/QdP1kpEksVyLX2/yBh2yRbiFUC19v8gYdskW4hCVrZg7ywuj/wCM/gman3AAgCzgAACCNYLw0pej2dZIRySNrBeGlL0ezrJCOTsJK7wYFE6Rb0f4lAANohQSVqw8+VufSqPV5SNSStWHnytz6VR6vKRtZ3dMcEf2qbEneG8UzLzAA+bCwgAAAhm9cPL+I7VLvqaRJxqiGbtw8v4jtUu+pZ/RrtzGEP5HN6Q6m+/kSXqe/CSs7aZvV5TTLHeRK/ZpN1TM3U9+ElZ20zerymmWO8iV+zSbqlrHMmOZ3ugXnGptnm3FOCO90C841Ns824pIUq+tcSZmhVbk7wrkWNABbRUgAABBesl4Q4Vsa76kUkrayXhDhWxrvqRSVXXd4O48kLUoW72sOamrOrjzC2N0HS9WhTP2Qzn6p+g6frJS5mrjzC2N0HS9WhTP2Qzn6p+g6frJSJJYrkWvt/kDDtki3EKoFr7f5Aw7ZItxCErWzB3lhdH/AMZ/BM1PuABAFnAAAEEawXhpS9Hs6yQjkkbWC8NKXo9nWSEcnYSV3gwKJ0i3o/xKAAbRCn9e9MFlty8MZt+dHJJhtfNSO4SZKvY3q3P+x92i654s2/sIuR9O6ojo5lWWNqpwnRuarH5Z8WfBcuXy5FmNfTQzXQ41LpUt2kfPRVLGtxuKNqq6CRqI1s+XxHNRqO8ipmufCXKoRjeZgfbiajS1IkVFwXsU9QRrBEkUOtC/uGaVdHOIUUdXFeWDwskbmjKmpbDI35FY7JUU+n3yNHvnxbv4hH+ZnyCv4ujiSt7HYvL0JxK+9/mFDQb3yNHvnxbv4hH+Y98jR758W7+IR/mZ8g8/24k/rReXofvv935UL0XzppsS3MCnraLHsPxmu4C+1qSimSVZJMuJHK3NGNz76r4u9muSFG6iaSoqJJ5XcKSR6veuWWaquanrPJjXPe1jGq5zlya1EzVV8h09B0dlqLBGjKqqxWWqv8ak8yOnZ9ycVFj7EQmvUgwioxXWPt+aFiuiw6KprKhfisSF7EX/AJyMT6zSarhbU0k1O/NGyscxcvIqZFftSjQ5VaOrQnuO4qbsNx44xucL0yfR0ycbY18jnL3Tk8WTUXjapYYnzRMcsaw6qwjGK3Ca5nY6uiqJKednxXscrXJ6UU/q6PMfbbV3UWLSsdJBGrmTNblmrHIrVy+VM8/qLF69+hyswa559JuAUbpMHxJyLirYm5+1aleLsioneZJxcfx88/4mlVDIy7Ey5C5BrRbU7jG61C7ArcepUsXvLVU97WjPAyaO48NRr0zRJJ0Y5Pna7JU+s8/dhamnJhP3tn5lUgdSml0xZ2tp5nLrolL29ji+Ra33YWp5yYT97Z+Z+OvK02tVy3JhWSJmuVU1V9CLmVTA63P/AE08z86oy/1F8js9L90Ut03O2fD+EtFTQpDC9yZLJxqquyXjTNV7y+JPEcYCeNTzQ5WaRr7p8dxSjclq4NO2Wqkkb3FVM3JzadvxuPJXeRvEuSuQ5iZmI5h2J2PWp08uxBLtQtQakL6aGcIqMA0SWjg1YxWVVHg1LFO34siRN4SfU7Mpn7I3hFRS6W8ExlWL7Vr8GbEx3lkilk4afU2SP0l+CJdajRQmlfRtJQUKRsx7DnrVYXI9URHPyydEq+JHpxZ+JUaq8SGEzGYJP+j2/wAAay3aWmxKvgoK2libFI2d6Ma9GpkjmuXiXNE73fT+5BOKUFbheI1GG4lSTUlZTSOingmYrXxvRclaqLxoqHzGtNSsEzD7MRMUatP0l1XGkRbUsVFLRe621vOLCvvTPzHuttbziwr70z8yroND3M38ynS9fpr6UPmWi91trecWFfemfmeMt4WrHG6R1w4YqNTNUbUNcv1Ii5r9RV8D3M38yjr9NfSh8zqdJ9xQXNdUldSMc2lijbBCrkyV7Wqq8JU8Waqv1ZHLsa570Yxquc5ckREzVVPwsVqV6Ga69r2pL1xildHbGC1CTMc9FRKypYubI2+VrXZOcvGnFwfGuUq3AjcKQw6kOJmplyaeiec2oltU6PtQsZ/ny/8AH/IL1g9mA8ZWMljdHIxr2PRWua5M0ci99FQrZpW1P7GueumxO08QmtOrl7p1PFCk1Gq55qrY82qzPvZNdwU4sm+WyoAKHVGpLfrZnJT3ZbUkWfcuk7Oxy/OiMXL0nr7SbSJ50Wt9pP8AtF9QAUK7SbSJ50Wt9pP+0O0m0iedFrfaT/tF9QAUVwvUivKSpRuKXngFNB4300U0zk/8XIxP7lgNCmrZo/0aVkOMJHNj2PRccddXInBgdxccUSdyxeLicvCcnHk5MyagAAAAeuqp4KullpaqCKenmYscsUjEcx7VTJWqi8SoqcWSlZNKGpvZmP1s2I2di9Ra88rle6lWL2xS5rxrwWqqOZ83CVE7yIiFnwAUMm1Jb/SRyQ3XbD2Z8SudO1V+rsa//Tx7SbSJ50Wt9pP+0X1ABQrtJtInnRa32k/7R+t1JtIXCThXTa6N8ao+dV6svoACpmjzUqt6gq46y97mqMaa1UVaKiiWmid5UdJmr3J9HgL8pabAsJwzAsIpsIwagpsPw+lZwIKenjRjI2+RET0/Kqn2gAAAAi3TVoIsHSrlV43Ry0OMMZwGYpQuRkyomWTX5orZE4kTukVUTiRUzK247qQ3PFUqmBXvg9VAqrktZTyQPRPmbw0X+xeQAFCu0m0iedFrfaT/ALQ7SbSJ50Wt9pP+0X1ABQrtJtInnRa32k/7R+s1JtIKvRH3Va7W58ao+dVT6uxoX0ABVXRtqX2thNbDXXtcFTcLo3cL2lTxe1qd3yPXNXuTx8Ss9GedocKw+hwrDqfDcMo6eioqaNI4KeCNGRxsTvNa1OJEPpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//Z">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0e12;
+    --surface: #13161c;
+    --border: #1e2229;
+    --border2: #252a33;
+    --text: #e8eaf0;
+    --muted: #565d6e;
+    --accent: #c8fb4e;
+    --accent-dim: rgba(200,251,78,0.08);
+    --hard: #ff6b6b;
+    --hard-bg: rgba(255,107,107,0.1);
+    --extreme: #a78bfa;
+    --extreme-bg: rgba(167,139,250,0.1);
+    --green: #4eca8b;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    max-width: 860px;
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-left {}
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--text);
+  }
+  h1 span { color: var(--accent); }
+  .sub {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .stats-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--surface);
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 72px;
+  }
+  .stat .n {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat .n.solved-n { color: var(--green); }
+  .stat .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: .08em;
+  }
+
+  /* Controls */
+  .controls {
+    max-width: 860px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .search {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+  .search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .search input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 9px 12px 9px 36px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search input:focus { border-color: var(--accent); }
+  .search input::placeholder { color: var(--muted); }
+
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .05em;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filter-btn:hover { color: var(--text); border-color: var(--border2); }
+  .filter-btn.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Sets */
+  .sets { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+  .set-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .set-card:hover { border-color: #2d333f; }
+
+  .set-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .set-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 36px;
+  }
+  .set-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    letter-spacing: -.01em;
+  }
+  .set-meta { display: flex; align-items: center; gap: 12px; }
+  .prog-wrap { display: flex; align-items: center; gap: 8px; }
+  .prog-track {
+    width: 64px; height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    width: 0%;
+    transition: width .4s ease;
+  }
+  .prog-text { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 26px; }
+  .diff-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .06em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .diff-pill.hard { background: var(--hard-bg); color: var(--hard); }
+  .diff-pill.extreme { background: var(--extreme-bg); color: var(--extreme); }
+  .chevron {
+    color: var(--muted);
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  .chevron.open { transform: rotate(180deg); }
+
+  /* Table */
+  .set-body { border-top: 1px solid var(--border); }
+  .set-body.hidden { display: none; }
+
+  .prob-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 80px 44px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    transition: background .12s;
+    cursor: default;
+  }
+  .prob-row:last-child { border-bottom: none; }
+  .prob-row:hover { background: rgba(255,255,255,0.025); }
+  .prob-row.solved { opacity: .5; }
+
+  .col-idx {
+    padding: 12px 0 12px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .col-name {
+    padding: 12px 10px;
+  }
+  .col-name a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .15s;
+  }
+  .col-name a:hover { color: var(--accent); }
+  .col-name a svg { color: var(--muted); flex-shrink: 0; transition: color .15s; }
+  .col-name a:hover svg { color: var(--accent); }
+
+  .col-diff {
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .col-check {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checkbox {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--border2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .checkbox:hover { border-color: var(--green); }
+  .checkbox.checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  /* Empty state */
+  .empty {
+    padding: 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: none;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">&#9632; Competitive Programming</div>
+    <h1>CF <span>Problem</span> Sheet</h1>
+    <div class="sub">10 sets &nbsp;·&nbsp; 50 problems &nbsp;·&nbsp; Hard &amp; Extreme</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="n" id="stat-total">50</div><div class="label">TOTAL</div></div>
+    <div class="stat"><div class="n solved-n" id="stat-solved">0</div><div class="label">SOLVED</div></div>
+    <div class="stat"><div class="n" style="color:var(--hard)">40</div><div class="label">HARD</div></div>
+    <div class="stat"><div class="n" style="color:var(--extreme)">10</div><div class="label">EXTREME</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search problems…" oninput="filterAll()">
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('Hard',this)">Hard</button>
+    <button class="filter-btn" onclick="setFilter('Extreme',this)">Extreme</button>
+    <button class="filter-btn" onclick="setFilter('unsolved',this)">Unsolved</button>
+    <button class="filter-btn" onclick="setFilter('solved',this)">Solved</button>
+  </div>
+</div>
+
+<div class="sets" id="sets"></div>
+<div class="empty" id="empty">No problems match your search.</div>
+
+<script>
+const SETS = [
+  { id: 1, diff: "Hard", problems: [
+    ["Common Divisors",                 "https://codeforces.com/problemset/problem/1203/C"],
+    ["Mashmokh and ACM",                "https://codeforces.com/problemset/problem/414/B"],
+    ["Biridian Forest",                 "https://codeforces.com/problemset/problem/329/B"],
+    ["Maximize the Root",               "https://codeforces.com/problemset/problem/1997/D"],
+    ["Working out",                     "https://codeforces.com/problemset/problem/429/B"],
+  ]},
+  { id: 2, diff: "Hard", problems: [
+    ["Maximum Submatrix 2",             "https://codeforces.com/problemset/problem/376/D"],
+    ["Long Path",                       "https://codeforces.com/problemset/problem/407/B"],
+    ["Parsa's Humongous Tree",          "https://codeforces.com/problemset/problem/1529/C"],
+    ["Xenia and Bit Operations",        "https://codeforces.com/problemset/problem/339/D"],
+    ["Caesar's Legions",                "https://codeforces.com/problemset/problem/118/D"],
+  ]},
+  { id: 3, diff: "Hard", problems: [
+    ["Unbearable Controversy of Being", "https://codeforces.com/problemset/problem/489/D"],
+    ["Cow Program",                     "https://codeforces.com/problemset/problem/283/B"],
+    ["Greenhouse Effect",               "https://codeforces.com/problemset/problem/269/B"],
+    ["Planets",                         "https://codeforces.com/problemset/problem/229/B"],
+    ["Greg and Graph",                  "https://codeforces.com/problemset/problem/296/D"],
+  ]},
+  { id: 4, diff: "Hard", problems: [
+    ["Little Girl and Maximum XOR",     "https://codeforces.com/problemset/problem/276/D"],
+    ["Iris and Game on the Tree",       "https://codeforces.com/problemset/problem/2006/A"],
+    ["Beautiful Graph",                 "https://codeforces.com/problemset/problem/1093/D"],
+    ["Drunken Maze",                    "https://codeforces.com/problemset/problem/2041/D"],
+    ["Tree Pruning",                    "https://codeforces.com/problemset/problem/2018/C"],
+  ]},
+  { id: 5, diff: "Hard", problems: [
+    ["Don't Blame Me",                  "https://codeforces.com/problemset/problem/1829/H"],
+    ["Iris and Game on the Tree",       "https://codeforces.com/problemset/problem/2006/A"],
+    ["Zero Path",                       "https://codeforces.com/problemset/problem/1695/C"],
+    ["Road Optimization",               "https://codeforces.com/problemset/problem/1625/C"],
+    ["Running Miles",                   "https://codeforces.com/problemset/problem/1826/D"],
+  ]},
+  { id: 6, diff: "Hard", problems: [
+    ["Valid BFS?",                      "https://codeforces.com/problemset/problem/1037/D"],
+    ["Flowers",                         "https://codeforces.com/problemset/problem/474/D"],
+    ["Zero Tree",                       "https://codeforces.com/problemset/problem/274/B"],
+    ["Lucky Number 2",                  "https://codeforces.com/problemset/problem/96/B"],
+    ["Wizards and Huge Prize",          "https://codeforces.com/problemset/problem/167/B"],
+  ]},
+  { id: 7, diff: "Hard", problems: [
+    ["Doctor",                          "https://codeforces.com/problemset/problem/83/B"],
+    ["Edge Weight Assignment",          "https://codeforces.com/problemset/problem/1338/B"],
+    ["Numbers on Tree",                 "https://codeforces.com/problemset/problem/1287/D"],
+    ["A Wide, Wide Graph",              "https://codeforces.com/problemset/problem/1805/D"],
+    ["Two Paths",                       "https://codeforces.com/problemset/problem/14/D"],
+  ]},
+  { id: 8, diff: "Hard", problems: [
+    ["Pawn",                            "https://codeforces.com/problemset/problem/41/D"],
+    ["Prime XOR Coloring",              "https://codeforces.com/problemset/problem/1991/D"],
+    ["0-1 MST",                         "https://codeforces.com/problemset/problem/1242/B"],
+    ["Medium Demon Problem (hard ver.)","https://codeforces.com/problemset/problem/2044/G2"],
+    ["MEX Sequences",                   "https://codeforces.com/problemset/problem/1613/D"],
+  ]},
+  { id: 9, diff: "Extreme", problems: [
+    ["Lucky Common Subsequence",        "https://codeforces.com/problemset/problem/347/D"],
+    ["Apple Tree",                      "https://codeforces.com/problemset/problem/1843/D"],
+    ["Yaroslav and Time",               "https://codeforces.com/problemset/problem/301/B"],
+    ["Determine Winning Islands in Race","https://codeforces.com/problemset/problem/1998/D"],
+    ["Minimum Spanning Tree for each edge","https://codeforces.com/problemset/problem/609/E"],
+  ]},
+  { id: 10, diff: "Extreme", problems: [
+    ["Blood Cousins",                   "https://codeforces.com/problemset/problem/208/E"],
+    ["A and B and Lecture Rooms",       "https://codeforces.com/problemset/problem/519/E"],
+    ["Information Graph",               "https://codeforces.com/problemset/problem/466/E"],
+    ["Tree Painting",                   "https://codeforces.com/problemset/problem/1187/E"],
+    ["Tree",                            "https://codeforces.com/problemset/problem/431/C"],
+  ]},
+];
+
+const solved = {};
+let activeFilter = 'all';
+
+const LINK_ICON = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+const CHECK_ICON = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+function build() {
+  const container = document.getElementById('sets');
+  SETS.forEach(set => {
+    const card = document.createElement('div');
+    card.className = 'set-card';
+    card.id = 'card-' + set.id;
+
+    const diffClass = set.diff.toLowerCase();
+
+    card.innerHTML = `
+      <div class="set-head" onclick="toggleSet(${set.id})">
+        <span class="set-num">SET ${String(set.id).padStart(2,'0')}</span>
+        <span class="set-title">${set.diff === 'Extreme' ? 'Extreme Problems' : 'Hard Problems'}</span>
+        <div class="set-meta">
+          <div class="prog-wrap">
+            <div class="prog-track"><div class="prog-fill" id="prog-${set.id}"></div></div>
+            <span class="prog-text" id="prog-text-${set.id}">0/5</span>
+          </div>
+          <span class="diff-pill ${diffClass}">${set.diff}</span>
+          <svg class="chevron" id="chev-${set.id}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="set-body" id="body-${set.id}">
+        ${set.problems.map((p, i) => {
+          const key = `${set.id}-${i}`;
+          return `<div class="prob-row" id="row-${key}">
+            <div class="col-idx">${i + 1}</div>
+            <div class="col-name">
+              <a href="${p[1]}" target="_blank" rel="noopener">
+                ${p[0]}${LINK_ICON}
+              </a>
+            </div>
+            <div class="col-diff">
+              <span class="diff-pill ${diffClass}">${set.diff}</span>
+            </div>
+            <div class="col-check">
+              <div class="checkbox" id="cb-${key}" onclick="toggleSolve(event,'${key}',${set.id})" title="Mark as solved"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+
+    container.appendChild(card);
+  });
+}
+
+function toggleSet(id) {
+  const body = document.getElementById('body-' + id);
+  const chev = document.getElementById('chev-' + id);
+  body.classList.toggle('hidden');
+  chev.classList.toggle('open');
+}
+
+function toggleSolve(e, key, setId) {
+  e.stopPropagation();
+  solved[key] = !solved[key];
+  const cb = document.getElementById('cb-' + key);
+  const row = document.getElementById('row-' + key);
+  cb.classList.toggle('checked', solved[key]);
+  cb.innerHTML = solved[key] ? CHECK_ICON : '';
+  row.classList.toggle('solved', solved[key]);
+  updateProgress(setId);
+  updateTotal();
+}
+
+function updateProgress(setId) {
+  const count = SETS[setId - 1].problems.filter((_, i) => solved[`${setId}-${i}`]).length;
+  document.getElementById('prog-' + setId).style.width = (count / 5 * 100) + '%';
+  document.getElementById('prog-text-' + setId).textContent = `${count}/5`;
+}
+
+function updateTotal() {
+  document.getElementById('stat-solved').textContent = Object.values(solved).filter(Boolean).length;
+}
+
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterAll();
+}
+
+function filterAll() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  let anyVisible = false;
+
+  SETS.forEach(set => {
+    let setHasVisible = false;
+    set.problems.forEach((p, i) => {
+      const key = `${set.id}-${i}`;
+      const row = document.getElementById('row-' + key);
+      if (!row) return;
+      const matchSearch = !q || p[0].toLowerCase().includes(q);
+      const isSolved = !!solved[key];
+      let matchFilter = true;
+      if (activeFilter === 'Hard') matchFilter = set.diff === 'Hard';
+      else if (activeFilter === 'Extreme') matchFilter = set.diff === 'Extreme';
+      else if (activeFilter === 'solved') matchFilter = isSolved;
+      else if (activeFilter === 'unsolved') matchFilter = !isSolved;
+      const show = matchSearch && matchFilter;
+      row.style.display = show ? '' : 'none';
+      if (show) { setHasVisible = true; anyVisible = true; }
+    });
+    const card = document.getElementById('card-' + set.id);
+    card.style.display = setHasVisible ? '' : 'none';
+
+    // Auto-expand if searching
+    if (q && setHasVisible) {
+      document.getElementById('body-' + set.id).classList.remove('hidden');
+      document.getElementById('chev-' + set.id).classList.add('open');
+    }
+  });
+
+  document.getElementById('empty').style.display = anyVisible ? 'none' : 'block';
+}
+
+build();
+
+// Collapse all bodies initially except set 1
+SETS.forEach(s => {
+  if (s.id !== 1) {
+    document.getElementById('body-' + s.id).classList.add('hidden');
+  } else {
+    document.getElementById('chev-' + s.id).classList.add('open');
+  }
+});
+</script>
+</body>
+</html>
