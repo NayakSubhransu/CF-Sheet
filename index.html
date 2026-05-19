@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CF Problem Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0e12;
+    --surface: #13161c;
+    --border: #1e2229;
+    --border2: #252a33;
+    --text: #e8eaf0;
+    --muted: #565d6e;
+    --accent: #c8fb4e;
+    --accent-dim: rgba(200,251,78,0.08);
+    --hard: #ff6b6b;
+    --hard-bg: rgba(255,107,107,0.1);
+    --extreme: #a78bfa;
+    --extreme-bg: rgba(167,139,250,0.1);
+    --green: #4eca8b;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    max-width: 860px;
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-left {}
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--text);
+  }
+  h1 span { color: var(--accent); }
+  .sub {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .stats-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--surface);
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 72px;
+  }
+  .stat .n {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat .n.solved-n { color: var(--green); }
+  .stat .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: .08em;
+  }
+
+  /* Controls */
+  .controls {
+    max-width: 860px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .search {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+  .search svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .search input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 9px 12px 9px 36px;
+    outline: none;
+    transition: border-color .15s;
+  }
+  .search input:focus { border-color: var(--accent); }
+  .search input::placeholder { color: var(--muted); }
+
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .05em;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filter-btn:hover { color: var(--text); border-color: var(--border2); }
+  .filter-btn.active {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Sets */
+  .sets { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+
+  .set-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color .2s;
+  }
+  .set-card:hover { border-color: #2d333f; }
+
+  .set-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .set-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    min-width: 36px;
+  }
+  .set-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+    letter-spacing: -.01em;
+  }
+  .set-meta { display: flex; align-items: center; gap: 12px; }
+  .prog-wrap { display: flex; align-items: center; gap: 8px; }
+  .prog-track {
+    width: 64px; height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 2px;
+    width: 0%;
+    transition: width .4s ease;
+  }
+  .prog-text { font-family: var(--mono); font-size: 10px; color: var(--muted); min-width: 26px; }
+  .diff-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .06em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .diff-pill.hard { background: var(--hard-bg); color: var(--hard); }
+  .diff-pill.extreme { background: var(--extreme-bg); color: var(--extreme); }
+  .chevron {
+    color: var(--muted);
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  .chevron.open { transform: rotate(180deg); }
+
+  /* Table */
+  .set-body { border-top: 1px solid var(--border); }
+  .set-body.hidden { display: none; }
+
+  .prob-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 80px 44px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    transition: background .12s;
+    cursor: default;
+  }
+  .prob-row:last-child { border-bottom: none; }
+  .prob-row:hover { background: rgba(255,255,255,0.025); }
+  .prob-row.solved { opacity: .5; }
+
+  .col-idx {
+    padding: 12px 0 12px 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .col-name {
+    padding: 12px 10px;
+  }
+  .col-name a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .15s;
+  }
+  .col-name a:hover { color: var(--accent); }
+  .col-name a svg { color: var(--muted); flex-shrink: 0; transition: color .15s; }
+  .col-name a:hover svg { color: var(--accent); }
+
+  .col-diff {
+    padding: 12px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .col-check {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checkbox {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--border2);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    flex-shrink: 0;
+  }
+  .checkbox:hover { border-color: var(--green); }
+  .checkbox.checked {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  /* Empty state */
+  .empty {
+    padding: 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    display: none;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">&#9632; Competitive Programming</div>
+    <h1>CF <span>Problem</span> Sheet</h1>
+    <div class="sub">10 sets &nbsp;·&nbsp; 50 problems &nbsp;·&nbsp; Hard &amp; Extreme</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="n" id="stat-total">50</div><div class="label">TOTAL</div></div>
+    <div class="stat"><div class="n solved-n" id="stat-solved">0</div><div class="label">SOLVED</div></div>
+    <div class="stat"><div class="n" style="color:var(--hard)">40</div><div class="label">HARD</div></div>
+    <div class="stat"><div class="n" style="color:var(--extreme)">10</div><div class="label">EXTREME</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="search">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="Search problems…" oninput="filterAll()">
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('Hard',this)">Hard</button>
+    <button class="filter-btn" onclick="setFilter('Extreme',this)">Extreme</button>
+    <button class="filter-btn" onclick="setFilter('unsolved',this)">Unsolved</button>
+    <button class="filter-btn" onclick="setFilter('solved',this)">Solved</button>
+  </div>
+</div>
+
+<div class="sets" id="sets"></div>
+<div class="empty" id="empty">No problems match your search.</div>
+
+<script>
+const SETS = [
+  { id: 1, diff: "Hard", problems: [
+    ["Common Divisors",                 "https://codeforces.com/problemset/problem/1203/C"],
+    ["Mashmokh and ACM",                "https://codeforces.com/problemset/problem/414/B"],
+    ["Biridian Forest",                 "https://codeforces.com/problemset/problem/329/B"],
+    ["Maximize the Root",               "https://codeforces.com/problemset/problem/1997/D"],
+    ["Working out",                     "https://codeforces.com/problemset/problem/429/B"],
+  ]},
+  { id: 2, diff: "Hard", problems: [
+    ["Maximum Submatrix 2",             "https://codeforces.com/problemset/problem/376/D"],
+    ["Long Path",                       "https://codeforces.com/problemset/problem/407/B"],
+    ["Parsa's Humongous Tree",          "https://codeforces.com/problemset/problem/1529/C"],
+    ["Xenia and Bit Operations",        "https://codeforces.com/problemset/problem/339/D"],
+    ["Caesar's Legions",                "https://codeforces.com/problemset/problem/118/D"],
+  ]},
+  { id: 3, diff: "Hard", problems: [
+    ["Unbearable Controversy of Being", "https://codeforces.com/problemset/problem/489/D"],
+    ["Cow Program",                     "https://codeforces.com/problemset/problem/283/B"],
+    ["Greenhouse Effect",               "https://codeforces.com/problemset/problem/269/B"],
+    ["Planets",                         "https://codeforces.com/problemset/problem/229/B"],
+    ["Greg and Graph",                  "https://codeforces.com/problemset/problem/296/D"],
+  ]},
+  { id: 4, diff: "Hard", problems: [
+    ["Little Girl and Maximum XOR",     "https://codeforces.com/problemset/problem/276/D"],
+    ["Iris and Game on the Tree",       "https://codeforces.com/problemset/problem/2006/A"],
+    ["Beautiful Graph",                 "https://codeforces.com/problemset/problem/1093/D"],
+    ["Drunken Maze",                    "https://codeforces.com/problemset/problem/2041/D"],
+    ["Tree Pruning",                    "https://codeforces.com/problemset/problem/2018/C"],
+  ]},
+  { id: 5, diff: "Hard", problems: [
+    ["Don't Blame Me",                  "https://codeforces.com/problemset/problem/1829/H"],
+    ["Iris and Game on the Tree",       "https://codeforces.com/problemset/problem/2006/A"],
+    ["Zero Path",                       "https://codeforces.com/problemset/problem/1695/C"],
+    ["Road Optimization",               "https://codeforces.com/problemset/problem/1625/C"],
+    ["Running Miles",                   "https://codeforces.com/problemset/problem/1826/D"],
+  ]},
+  { id: 6, diff: "Hard", problems: [
+    ["Valid BFS?",                      "https://codeforces.com/problemset/problem/1037/D"],
+    ["Flowers",                         "https://codeforces.com/problemset/problem/474/D"],
+    ["Zero Tree",                       "https://codeforces.com/problemset/problem/274/B"],
+    ["Lucky Number 2",                  "https://codeforces.com/problemset/problem/96/B"],
+    ["Wizards and Huge Prize",          "https://codeforces.com/problemset/problem/167/B"],
+  ]},
+  { id: 7, diff: "Hard", problems: [
+    ["Doctor",                          "https://codeforces.com/problemset/problem/83/B"],
+    ["Edge Weight Assignment",          "https://codeforces.com/problemset/problem/1338/B"],
+    ["Numbers on Tree",                 "https://codeforces.com/problemset/problem/1287/D"],
+    ["A Wide, Wide Graph",              "https://codeforces.com/problemset/problem/1805/D"],
+    ["Two Paths",                       "https://codeforces.com/problemset/problem/14/D"],
+  ]},
+  { id: 8, diff: "Hard", problems: [
+    ["Pawn",                            "https://codeforces.com/problemset/problem/41/D"],
+    ["Prime XOR Coloring",              "https://codeforces.com/problemset/problem/1991/D"],
+    ["0-1 MST",                         "https://codeforces.com/problemset/problem/1242/B"],
+    ["Medium Demon Problem (hard ver.)","https://codeforces.com/problemset/problem/2044/G2"],
+    ["MEX Sequences",                   "https://codeforces.com/problemset/problem/1613/D"],
+  ]},
+  { id: 9, diff: "Extreme", problems: [
+    ["Lucky Common Subsequence",        "https://codeforces.com/problemset/problem/347/D"],
+    ["Apple Tree",                      "https://codeforces.com/problemset/problem/1843/D"],
+    ["Yaroslav and Time",               "https://codeforces.com/problemset/problem/301/B"],
+    ["Determine Winning Islands in Race","https://codeforces.com/problemset/problem/1998/D"],
+    ["Minimum Spanning Tree for each edge","https://codeforces.com/problemset/problem/609/E"],
+  ]},
+  { id: 10, diff: "Extreme", problems: [
+    ["Blood Cousins",                   "https://codeforces.com/problemset/problem/208/E"],
+    ["A and B and Lecture Rooms",       "https://codeforces.com/problemset/problem/519/E"],
+    ["Information Graph",               "https://codeforces.com/problemset/problem/466/E"],
+    ["Tree Painting",                   "https://codeforces.com/problemset/problem/1187/E"],
+    ["Tree",                            "https://codeforces.com/problemset/problem/431/C"],
+  ]},
+];
+
+const solved = {};
+let activeFilter = 'all';
+
+const LINK_ICON = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+const CHECK_ICON = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+function build() {
+  const container = document.getElementById('sets');
+  SETS.forEach(set => {
+    const card = document.createElement('div');
+    card.className = 'set-card';
+    card.id = 'card-' + set.id;
+
+    const diffClass = set.diff.toLowerCase();
+
+    card.innerHTML = `
+      <div class="set-head" onclick="toggleSet(${set.id})">
+        <span class="set-num">SET ${String(set.id).padStart(2,'0')}</span>
+        <span class="set-title">${set.diff === 'Extreme' ? 'Extreme Problems' : 'Hard Problems'}</span>
+        <div class="set-meta">
+          <div class="prog-wrap">
+            <div class="prog-track"><div class="prog-fill" id="prog-${set.id}"></div></div>
+            <span class="prog-text" id="prog-text-${set.id}">0/5</span>
+          </div>
+          <span class="diff-pill ${diffClass}">${set.diff}</span>
+          <svg class="chevron" id="chev-${set.id}" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+      <div class="set-body" id="body-${set.id}">
+        ${set.problems.map((p, i) => {
+          const key = `${set.id}-${i}`;
+          return `<div class="prob-row" id="row-${key}">
+            <div class="col-idx">${i + 1}</div>
+            <div class="col-name">
+              <a href="${p[1]}" target="_blank" rel="noopener">
+                ${p[0]}${LINK_ICON}
+              </a>
+            </div>
+            <div class="col-diff">
+              <span class="diff-pill ${diffClass}">${set.diff}</span>
+            </div>
+            <div class="col-check">
+              <div class="checkbox" id="cb-${key}" onclick="toggleSolve(event,'${key}',${set.id})" title="Mark as solved"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+
+    container.appendChild(card);
+  });
+}
+
+function toggleSet(id) {
+  const body = document.getElementById('body-' + id);
+  const chev = document.getElementById('chev-' + id);
+  body.classList.toggle('hidden');
+  chev.classList.toggle('open');
+}
+
+function toggleSolve(e, key, setId) {
+  e.stopPropagation();
+  solved[key] = !solved[key];
+  const cb = document.getElementById('cb-' + key);
+  const row = document.getElementById('row-' + key);
+  cb.classList.toggle('checked', solved[key]);
+  cb.innerHTML = solved[key] ? CHECK_ICON : '';
+  row.classList.toggle('solved', solved[key]);
+  updateProgress(setId);
+  updateTotal();
+}
+
+function updateProgress(setId) {
+  const count = SETS[setId - 1].problems.filter((_, i) => solved[`${setId}-${i}`]).length;
+  document.getElementById('prog-' + setId).style.width = (count / 5 * 100) + '%';
+  document.getElementById('prog-text-' + setId).textContent = `${count}/5`;
+}
+
+function updateTotal() {
+  document.getElementById('stat-solved').textContent = Object.values(solved).filter(Boolean).length;
+}
+
+function setFilter(f, btn) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterAll();
+}
+
+function filterAll() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  let anyVisible = false;
+
+  SETS.forEach(set => {
+    let setHasVisible = false;
+    set.problems.forEach((p, i) => {
+      const key = `${set.id}-${i}`;
+      const row = document.getElementById('row-' + key);
+      if (!row) return;
+      const matchSearch = !q || p[0].toLowerCase().includes(q);
+      const isSolved = !!solved[key];
+      let matchFilter = true;
+      if (activeFilter === 'Hard') matchFilter = set.diff === 'Hard';
+      else if (activeFilter === 'Extreme') matchFilter = set.diff === 'Extreme';
+      else if (activeFilter === 'solved') matchFilter = isSolved;
+      else if (activeFilter === 'unsolved') matchFilter = !isSolved;
+      const show = matchSearch && matchFilter;
+      row.style.display = show ? '' : 'none';
+      if (show) { setHasVisible = true; anyVisible = true; }
+    });
+    const card = document.getElementById('card-' + set.id);
+    card.style.display = setHasVisible ? '' : 'none';
+
+    // Auto-expand if searching
+    if (q && setHasVisible) {
+      document.getElementById('body-' + set.id).classList.remove('hidden');
+      document.getElementById('chev-' + set.id).classList.add('open');
+    }
+  });
+
+  document.getElementById('empty').style.display = anyVisible ? 'none' : 'block';
+}
+
+build();
+
+// Collapse all bodies initially except set 1
+SETS.forEach(s => {
+  if (s.id !== 1) {
+    document.getElementById('body-' + s.id).classList.add('hidden');
+  } else {
+    document.getElementById('chev-' + s.id).classList.add('open');
+  }
+});
+</script>
+</body>
+</html>
